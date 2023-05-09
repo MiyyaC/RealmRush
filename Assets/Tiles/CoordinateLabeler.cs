@@ -9,7 +9,7 @@ using System;
 public class CoordinateLabeler : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;
-    [SerializeField] Color blockedColor = Color.gray;
+    [SerializeField] Color blockedColor = Color.black;
     TextMeshPro label;
     Vector2Int coordinates = new Vector2Int();
     Waypoint waypoint;
@@ -45,7 +45,8 @@ public class CoordinateLabeler : MonoBehaviour
     void SetLabelColor()
     {
         if(waypoint.IsPlaceable) label.color = defaultColor;
-        else label.color = blockedColor;
+        else 
+            label.color = blockedColor;
     }
 
     void DisplayCoordinates()
