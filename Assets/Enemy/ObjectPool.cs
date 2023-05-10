@@ -30,7 +30,6 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-
     IEnumerator SpawnEnemy()
     {
         while(true)
