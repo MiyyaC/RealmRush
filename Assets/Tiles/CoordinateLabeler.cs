@@ -9,9 +9,9 @@ using System;
 public class CoordinateLabeler : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;
-    [SerializeField] Color blockedColor = Color.black;
+    [SerializeField] Color blockedColor = Color.green;
     [SerializeField] Color exploredColor = Color.yellow;
-    [SerializeField] Color pathColor = new Color(1f,0.5f,0f);
+    [SerializeField] Color pathColor = new Color(1f,0.1f,0f);
     TextMeshPro label;
     Vector2Int coordinates = new Vector2Int();
     GridManager gridManager;
@@ -60,19 +60,14 @@ public class CoordinateLabeler : MonoBehaviour
 
         if(!node.isWalkable)
         {
-            Debug.Log("isWalkable");
             label.color = blockedColor;
         }
         else if(node.isPath)
         {
-            Debug.Log("isPath");
-
             label.color = pathColor;
         }
         else if(node.isExplored)
         {
-            Debug.Log("isExplored");
-
             label.color = exploredColor;
         }
         else
@@ -83,8 +78,9 @@ public class CoordinateLabeler : MonoBehaviour
 
     void DisplayCoordinates()
     {
-        coordinates.x = Mathf.RoundToInt(transform.parent.position.x / UnityEditor.EditorSnapSettings.move.x);
-        coordinates.y = Mathf.RoundToInt(transform.parent.position.z / UnityEditor.EditorSnapSettings.move.z);
+        if(gridManager == null) return;
+        coordinates.x = Mathf.RoundToInt(transform.parent.position.x / gridManager.UnityGridSize);
+        coordinates.y = Mathf.RoundToInt(transform.parent.position.z / gridManager.UnityGridSize);
         label.text = $"{coordinates.x},{coordinates.y}";
     }
 
