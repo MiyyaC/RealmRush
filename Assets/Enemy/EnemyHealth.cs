@@ -30,7 +30,6 @@ public class EnemyHealth : MonoBehaviour
 
     void ProcessHit()
     {
-        Debug.Log("test");
         currentHitPoint--;
         if(currentHitPoint <= 0)
         {
